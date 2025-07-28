@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Zähler</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-size: 5em;
+    }
+  </style>
+</head>
+<body>
+  <div id="counter">0</div>
+
+  <script>
+    async function updateCounter() {
+      let res = await fetch("/count");
+      let data = await res.json();
+      document.getElementById("counter").innerText = data.count;
+    }
+    setInterval(updateCounter, 1000);
+    updateCounter();
+  </script>
+</body>
+</html>
